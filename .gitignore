@@ -1,0 +1,12 @@
+.idea
+.gradle
+.navigation
+build
+proguard
+captures
+fastlane
+lint
+local.properties
+bin
+gen
+out
