@@ -28,14 +28,18 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         whenCreated {
-            viewModel.result.collect {
-                log.d(tag) { it }
+            viewModel.result.collect { result ->
+                result?.let {
+                    log.d(tag) { it }
+                }
             }
         }
 
         whenCreated {
-            viewModel.error.collect {
-                log.e(tag, it) { "Failed to fetch" }
+            viewModel.error.collect { exception ->
+                exception?.let {
+                    log.e(tag, it) { "Failed to fetch" }
+                }
             }
         }
 
