@@ -7,7 +7,7 @@ object Config {
     }
 
     object Java {
-        val version = JavaVersion.VERSION_1_8
-        const val kotlinTarget = "1.8"
+        val version = JavaVersion.VERSION_11
+        const val kotlinTarget = "11"
     }
 }
