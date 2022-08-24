@@ -13,6 +13,7 @@ dependencies {
 
     implementation(Deps.inject)
     implementation(Deps.Ktor.core)
+    implementation(Deps.Ktor.logging)
     implementation(Deps.Ktor.serialization)
     implementation(Deps.Ktor.clientSerialization)
     implementation(Deps.Ktor.contentNegotiation)

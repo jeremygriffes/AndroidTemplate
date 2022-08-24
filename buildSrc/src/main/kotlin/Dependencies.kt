@@ -35,6 +35,7 @@ object Deps {
         const val clientSerialization = "io.ktor:ktor-client-serialization:${Versions.ktor}"
         const val contentNegotiation = "io.ktor:ktor-client-content-negotiation:${Versions.ktor}"
         const val ktorSerialization = "io.ktor:ktor-serialization-kotlinx-json:${Versions.ktor}"
+        const val logging = "io.ktor:ktor-client-logging:${Versions.ktor}"
         const val serialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.3"
     }
 
