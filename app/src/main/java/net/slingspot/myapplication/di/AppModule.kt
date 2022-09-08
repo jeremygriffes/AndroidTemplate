@@ -8,7 +8,6 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import io.ktor.client.engine.*
 import io.ktor.client.engine.android.*
-import net.slingspot.androidlogger.LogLevel.VERBOSE
 import net.slingspot.androidlogger.LogcatLogger
 import net.slingspot.core.Logger
 import net.slingspot.core.NetworkApi
@@ -26,15 +25,15 @@ class AppModule {
 
     @Provides
     @Singleton
+    fun logger(): Logger = LogcatLogger(App.logLevel)
+
+    @Provides
+    @Singleton
     fun network(ktor: NetworkKtor): NetworkApi = ktor
 
     @Provides
     @Singleton
     fun repository(repo: Repository.Default): Repository = repo
-
-    @Provides
-    @Singleton
-    fun logger(): Logger = LogcatLogger(VERBOSE)
 
     @Provides
     @Singleton
