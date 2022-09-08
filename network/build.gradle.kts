@@ -12,9 +12,9 @@ dependencies {
     implementation(project(":core"))
 
     implementation(Deps.inject)
+    implementation(Deps.serialization)
     implementation(Deps.Ktor.core)
     implementation(Deps.Ktor.logging)
-    implementation(Deps.Ktor.serialization)
     implementation(Deps.Ktor.clientSerialization)
     implementation(Deps.Ktor.contentNegotiation)
     implementation(Deps.Ktor.ktorSerialization)

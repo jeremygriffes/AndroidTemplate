@@ -11,11 +11,11 @@ java {
 
 dependencies {
     implementation(Deps.inject)
-    implementation(Deps.Ktor.serialization)
+    implementation(Deps.serialization)
     implementation(Deps.Coroutines.core)
 
     implementation(Deps.Test.junit)
-    implementation(Deps.Test.coroutines)
+    implementation(Deps.Coroutines.test)
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
