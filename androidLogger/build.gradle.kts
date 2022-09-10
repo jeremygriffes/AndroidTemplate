@@ -34,6 +34,10 @@ android {
     }
 }
 
+tasks.withType<Test> {
+    useJUnitPlatform()
+}
+
 dependencies {
     implementation(project(":core"))
     testImplementation(Deps.Test.junit)

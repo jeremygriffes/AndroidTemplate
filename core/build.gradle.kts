@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     id("java-library")
     id("org.jetbrains.kotlin.jvm")
@@ -11,13 +13,17 @@ java {
 
 dependencies {
     implementation(Deps.inject)
-    implementation(Deps.serialization)
+    implementation(Deps.Ktor.serialization)
     implementation(Deps.Coroutines.core)
 
     implementation(Deps.Test.junit)
     implementation(Deps.Coroutines.test)
 }
 
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+tasks.withType<KotlinCompile>().configureEach {
     kotlinOptions.freeCompilerArgs += "-opt-in=kotlin.RequiresOptIn"
+}
+
+tasks.withType<Test> {
+    useJUnitPlatform()
 }

@@ -11,5 +11,5 @@ object Versions {
     const val androidLifecycle = "2.5.0"
     const val coroutines = "1.6.1"
     const val landscapist = "1.6.1"
-
+    const val browser = "1.4.0"
 }

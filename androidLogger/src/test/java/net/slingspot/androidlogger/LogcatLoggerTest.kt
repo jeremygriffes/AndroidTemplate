@@ -6,15 +6,15 @@ import io.mockk.mockkStatic
 import io.mockk.slot
 import net.slingspot.androidlogger.LogLevel.VERBOSE
 import net.slingspot.androidlogger.LogLevel.WARN
-import org.junit.Assert.*
-import org.junit.Before
-import org.junit.Test
+import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Nested
+import org.junit.jupiter.api.Test
 
 class LogcatLoggerTest {
     private val logSlot = slot<String>()
 
-    @Before
-    fun before() {
+    init {
         mockkStatic(Log::class)
         every { Log.v(any(), capture(logSlot)) } returns 0
         every { Log.d(any(), capture(logSlot)) } returns 0
@@ -24,54 +24,134 @@ class LogcatLoggerTest {
         every { Log.e(any(), capture(logSlot), any()) } returns 0
     }
 
-    @Test
-    fun `minimum log level prevents logging`() {
-        val verboseLog = LogcatLogger(VERBOSE)
+    @Nested
+    @DisplayName("Given a log level of VERBOSE")
+    inner class VerboseLog {
+        val log = LogcatLogger(VERBOSE)
 
-        verboseLog.v(tag) { "v" }
-        assertEquals("v", logSlot.captured)
+        @Nested
+        @DisplayName("when logging verbose, then")
+        inner class WhenVerbose {
+            init {
+                log.v(tag) { "v" }
+            }
 
-        verboseLog.d(tag) { "d" }
-        assertEquals("d", logSlot.captured)
+            @Test
+            @DisplayName("message is logged")
+            fun then() {
+                assertEquals("v", logSlot.captured)
+            }
+        }
 
-        verboseLog.i(tag) { "i" }
-        assertEquals("i", logSlot.captured)
+        @Nested
+        @DisplayName("when logging error, then")
+        inner class WhenError {
+            init {
+                log.e(tag) { "e" }
+            }
 
-        verboseLog.w(tag) { "w" }
-        assertEquals("w", logSlot.captured)
-
-        verboseLog.e(tag) { "e" }
-        assertEquals("e", logSlot.captured)
-
-        logSlot.clear()
-
-        val warnLog = LogcatLogger(WARN)
-        warnLog.v(tag) { "v" }
-        assertFalse(logSlot.isCaptured)
-
-        warnLog.d(tag) { "d" }
-        assertFalse(logSlot.isCaptured)
-
-        warnLog.i(tag) { "i" }
-        assertFalse(logSlot.isCaptured)
-
-        warnLog.w(tag) { "w" }
-        assertEquals("w", logSlot.captured)
-
-        warnLog.e(tag) { "e" }
-        assertEquals("e", logSlot.captured)
+            @Test
+            @DisplayName("message is logged")
+            fun then() {
+                assertEquals("e", logSlot.captured)
+            }
+        }
     }
 
-    @Test
-    fun `null message translates to 'null' text`() {
-        LogcatLogger().i(tag) { null }
-        assertEquals("null", logSlot.captured)
+    @Nested
+    @DisplayName("Given a log level of WARN")
+    inner class WarnLog {
+        val log = LogcatLogger(WARN)
+
+        @Nested
+        @DisplayName("when logging verbose, then")
+        inner class WhenVerbose {
+            init {
+                log.v(tag) { "v" }
+            }
+
+            @Test
+            @DisplayName("nothing is logged")
+            fun then() {
+                assertFalse(logSlot.isCaptured)
+            }
+        }
+
+        @Nested
+        @DisplayName("when logging info, then")
+        inner class WhenInfo {
+            init {
+                log.i(tag) { "i" }
+            }
+
+            @Test
+            @DisplayName("nothing is logged")
+            fun then() {
+                assertFalse(logSlot.isCaptured)
+            }
+        }
+
+        @Nested
+        @DisplayName("when logging warn, then")
+        inner class WhenWarn {
+            init {
+                log.w(tag) { "w" }
+            }
+
+            @Test
+            @DisplayName("message is logged")
+            fun then() {
+                assertEquals("w", logSlot.captured)
+            }
+        }
+
+        @Nested
+        @DisplayName("when logging error, then")
+        inner class WhenError {
+            init {
+                log.e(tag) { "e" }
+            }
+
+            @Test
+            @DisplayName("message is logged")
+            fun then() {
+                assertEquals("e", logSlot.captured)
+            }
+        }
     }
 
-    @Test
-    fun `exceptions thrown in message construction translates to exception text`() {
-        LogcatLogger().i(tag) { throw Exception("whoops") }
-        assertTrue(logSlot.captured.contains("whoops"))
+    @Nested
+    @DisplayName("Given a logger")
+    inner class NullMessage {
+        val log = LogcatLogger()
+
+        @Nested
+        @DisplayName("when logging a null message, then")
+        inner class WhenNull {
+            init {
+                log.i(tag) { null }
+            }
+
+            @Test
+            @DisplayName("message translates to 'null' text")
+            fun then() {
+                assertEquals("null", logSlot.captured)
+            }
+        }
+
+        @Nested
+        @DisplayName("when throwing an exception in the message function, then")
+        inner class WhenException {
+            init {
+                log.i(tag) { throw Exception("whoops") }
+            }
+
+            @Test
+            @DisplayName("message translates to exception text")
+            fun then() {
+                assertTrue(logSlot.captured.contains("whoops"))
+            }
+        }
     }
 
     companion object {

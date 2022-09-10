@@ -1,3 +1,6 @@
+// "Incubating" warnings; remove after AS non-canary
+@file:Suppress("UnstableApiUsage")
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -33,17 +36,14 @@ android {
         targetCompatibility = Config.Java.version
     }
 
-    kotlinOptions {
-        jvmTarget = Config.Java.kotlinTarget
-    }
+    kotlinOptions.jvmTarget = Config.Java.kotlinTarget
 
-    buildFeatures {
-        compose = true
-    }
+    buildFeatures.compose = true
 
-    composeOptions {
-        kotlinCompilerExtensionVersion = Versions.compose
-    }
+    composeOptions.kotlinCompilerExtensionVersion = Versions.compose
+
+    // Junit5 packages each include a license file that break the mergeDebugJavaResource task.
+    packagingOptions.setExcludes(setOf("META-INF/**", "LICENSE.txt"))
 }
 
 dependencies {
@@ -59,23 +59,22 @@ dependencies {
     implementation(Deps.materialDesign)
     implementation(Deps.Coroutines.android)
     implementation(Deps.Ktor.android)
-    implementation(Deps.Androidx.Compose.ui)
-    implementation(Deps.Androidx.Compose.material)
-    implementation(Deps.Androidx.Compose.preview)
-    implementation(Deps.Androidx.Compose.activity)
-    implementation(Deps.Androidx.Lifecycle.viewModel)
-    implementation(Deps.Androidx.Lifecycle.common)
-    implementation(Deps.Androidx.Lifecycle.runtime)
-    implementation(Deps.Androidx.Lifecycle.compose)
+    implementation(Deps.Compose.ui)
+    implementation(Deps.Compose.material)
+    implementation(Deps.Compose.preview)
+    implementation(Deps.Compose.activity)
+    implementation(Deps.Compose.navigation)
+    implementation(Deps.Androidx.lifecycleViewModel)
+    implementation(Deps.Androidx.lifecycleCommon)
+    implementation(Deps.Androidx.lifecycleRuntime)
+    implementation(Deps.Androidx.lifecycleCompose)
     implementation(Deps.Androidx.appCompat)
     implementation(Deps.Androidx.activityKtx)
 
-    testImplementation(Deps.Test.junit)
-    androidTestImplementation(Deps.Test.androidJunit)
     androidTestImplementation(Deps.Test.espresso)
-    androidTestImplementation(Deps.Androidx.Compose.testUi)
-    debugImplementation(Deps.Androidx.Compose.testTooling)
-    debugImplementation(Deps.Androidx.Compose.testManifest)
+    androidTestImplementation(Deps.Compose.testUi)
+    debugImplementation(Deps.Compose.testTooling)
+    debugImplementation(Deps.Compose.testManifest)
 }
 
 kapt {
