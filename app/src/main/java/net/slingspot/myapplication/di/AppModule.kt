@@ -10,9 +10,7 @@ import io.ktor.client.engine.*
 import io.ktor.client.engine.android.*
 import net.slingspot.androidlogger.LogcatLogger
 import net.slingspot.core.Logger
-import net.slingspot.core.NetworkApi
 import net.slingspot.myapplication.App
-import net.slingspot.network.NetworkKtor
 import javax.inject.Singleton
 
 @Module
@@ -25,10 +23,6 @@ class AppModule {
     @Provides
     @Singleton
     fun logger(): Logger = LogcatLogger(App.logLevel)
-
-    @Provides
-    @Singleton
-    fun network(ktor: NetworkKtor): NetworkApi = ktor
 
     @Provides
     @Singleton
