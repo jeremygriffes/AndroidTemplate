@@ -4,6 +4,7 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
 }
 
 android {
@@ -42,7 +43,14 @@ tasks.withType<Test> {
 }
 
 dependencies {
-    implementation(project(":core"))
+    kapt(Deps.Room.compiler)
+
+    implementation(Deps.inject)
+    implementation(Deps.dateTime)
+    implementation(Deps.serialization)
+    implementation(Deps.Hilt.android)
+    implementation(Deps.Room.runtime)
+    implementation(Deps.Room.ktx)
 
     testImplementation(Deps.Test.junit)
     testImplementation(Deps.Test.mockk)

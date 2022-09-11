@@ -12,4 +12,5 @@ object Versions {
     const val coroutines = "1.6.1"
     const val landscapist = "1.6.1"
     const val browser = "1.4.0"
+    const val room = "2.4.3"
 }

@@ -2,6 +2,8 @@ object Deps {
     const val androidKtx = "androidx.core:core-ktx:1.8.0"
     const val inject = "javax.inject:javax.inject:1"
     const val materialDesign = "com.google.android.material:material:1.6.1"
+    const val dateTime = "org.jetbrains.kotlinx:kotlinx-datetime:0.4.0"
+    const val serialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.3"
 
     object Hilt {
         const val android = "com.google.dagger:hilt-android:${Versions.hilt}"
@@ -46,9 +48,15 @@ object Deps {
         const val core = "io.ktor:ktor-client-core:${Versions.ktor}"
         const val clientSerialization = "io.ktor:ktor-client-serialization:${Versions.ktor}"
         const val contentNegotiation = "io.ktor:ktor-client-content-negotiation:${Versions.ktor}"
-        const val ktorSerialization = "io.ktor:ktor-serialization-kotlinx-json:${Versions.ktor}"
+        const val jsonSerialization = "io.ktor:ktor-serialization-kotlinx-json:${Versions.ktor}"
         const val logging = "io.ktor:ktor-client-logging:${Versions.ktor}"
-        const val serialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.3"
+    }
+
+    object Room {
+        const val runtime = "androidx.room:room-runtime:${Versions.room}"
+        const val ktx = "androidx.room:room-ktx:${Versions.room}"
+        const val compiler = "androidx.room:room-compiler:${Versions.room}"
+        const val testing = "androidx.room:room-testing:${Versions.room}"
     }
 
     object Test {

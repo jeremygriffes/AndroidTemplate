@@ -13,4 +13,5 @@ include(
     ":core",
     ":network",
     ":androidLogger",
+    ":room",
 )

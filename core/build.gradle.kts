@@ -13,11 +13,12 @@ java {
 
 dependencies {
     implementation(Deps.inject)
-    implementation(Deps.Ktor.serialization)
+    implementation(Deps.serialization)
+    implementation(Deps.dateTime)
     implementation(Deps.Coroutines.core)
 
-    implementation(Deps.Test.junit)
-    implementation(Deps.Coroutines.test)
+    testImplementation(Deps.Test.junit)
+    testImplementation(Deps.Coroutines.test)
 }
 
 tasks.withType<KotlinCompile>().configureEach {

@@ -1,4 +1,4 @@
-// "Incubating" warnings; remove after AS non-canary
+// Suppress "Incubating" warnings; remove after switching to a non-canary Android Studio.
 @file:Suppress("UnstableApiUsage")
 
 plugins {
@@ -54,6 +54,7 @@ dependencies {
     implementation(project(":core"))
     implementation(project(":network"))
     implementation(project(":androidLogger"))
+    implementation(project(":room"))
 
     implementation(Deps.androidKtx)
     implementation(Deps.materialDesign)
