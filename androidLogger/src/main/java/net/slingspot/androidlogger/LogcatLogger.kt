@@ -2,8 +2,8 @@ package net.slingspot.androidlogger
 
 import android.util.Log
 import net.slingspot.androidlogger.LogLevel.*
-import net.slingspot.core.Logger
-import net.slingspot.core.Message
+import net.slingspot.core.log.Logger
+import net.slingspot.core.log.Message
 
 enum class LogLevel {
     VERBOSE,

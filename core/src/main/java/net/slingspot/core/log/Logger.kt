@@ -1,4 +1,4 @@
-package net.slingspot.core
+package net.slingspot.core.log
 
 typealias Message = () -> Any?
 

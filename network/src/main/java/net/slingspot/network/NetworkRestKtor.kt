@@ -9,7 +9,7 @@ import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.json.Json
 import javax.inject.Inject
-import net.slingspot.core.Logger as AppLogger
+import net.slingspot.core.log.Logger as AppLogger
 
 /**
  * Ktor implementation for REST calls.

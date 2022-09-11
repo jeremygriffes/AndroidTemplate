@@ -9,7 +9,7 @@ import dagger.hilt.components.SingletonComponent
 import io.ktor.client.engine.*
 import io.ktor.client.engine.android.*
 import net.slingspot.androidlogger.LogcatLogger
-import net.slingspot.core.Logger
+import net.slingspot.core.log.Logger
 import net.slingspot.myapplication.App
 import javax.inject.Singleton
 
